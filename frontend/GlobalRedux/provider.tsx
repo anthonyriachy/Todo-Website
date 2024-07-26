@@ -3,8 +3,11 @@
 //which is layout.tsx because it is a server side, and redux lives in client side
 import { Provider } from "react-redux";
 import { store } from "./store";
-
-export function Providers({children}){
+import { ReactNode } from "react";
+interface ProviderProps{
+    children:ReactNode
+}
+export function Providers({children}:ProviderProps){
     return <Provider store={store}>
                 {children}
             </Provider>

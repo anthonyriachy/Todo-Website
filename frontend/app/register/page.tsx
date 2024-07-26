@@ -7,7 +7,8 @@ import SignUp from '../login/page';
 function Page():React.ReactElement {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [confirmPassword, setConfirmPassword] = useState('');
+    
   const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
@@ -47,13 +48,13 @@ function Page():React.ReactElement {
           <input
             type='password'
             placeholder='Confirm Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             className='w-[100%]  bg-[#2E3239] h-[80px] px-[30px]'
           />
           <p className='text-[#F4F6FA] text-[16px] opacity-50 my-[30px]'>
             Already have an account? 
-            <Link href='/Login' className='underline'>Login</Link>
+            <Link href='/login' className='underline'>Login</Link>
           </p>
           <button type='submit' className='bg-[#F4F6FA] w-[200px] sm:w-[300px] h-[50px] rounded-[9px] text-black mx-auto'>
             Register

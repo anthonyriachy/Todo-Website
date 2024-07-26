@@ -24,7 +24,7 @@ export default function RootLayout({
                 <p className='text-[12px] text-[#F4F6FA] opacity-70'>Stop Procrastinating, Start Organizing </p>        
             </section>
             <section className='flex'>
-                <button type='button' aria-label="dark/light mode"> 
+                <button type='button' aria-label="dark/light mode"  className="xs:inline hidden"> 
                 {/* the aria-label is for is for screenreader because i dont have text inside the button  */}
                     <Image src="mode.svg" alt="dark/light mode" width={30} height={30}className='mx-2.5'/>
                 </button>
