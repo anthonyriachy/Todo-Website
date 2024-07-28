@@ -4,17 +4,37 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import SignUp from '../login/page';
 
+
 function Page():React.ReactElement {
+  const URL=process.env.NEXT_PUBLIC_URL;
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-    
+  const [message,setMessage]=useState("");
   const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault();
+    if(password!=confirmPassword){
+      setMessage("Passwords do not match");
+      return;
+    }
+    if(!email || !password){
+      setMessage("Email and Password required");
+      return
+    }
     try {
-      const response = await fetch('http://localhost:8080/auth/test', {
-        method: 'GET',
+      console.log("hello URL: "+URL)
+      const response = await fetch(`${URL}/user/signup`, {
+        method: 'POST',
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          email,
+          password,
+        })
       });
+
       if (!response.ok) {
         console.log('response not ok: ' + response.status);
         return;
