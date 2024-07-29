@@ -1,25 +1,37 @@
 'use client'
+import { setTokens } from '@/GlobalRedux/Features/authSlice';
+import { useAppDispatch } from '@/GlobalRedux/store';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+ import React, { useState } from 'react';
 
 
-
+const URL=process.env.NEXT_PUBLIC_URL
 function Page():React.ReactElement {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const dispatch=useAppDispatch();
+  const router=useRouter();
   const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/auth/test', {
-        method: 'GET',
+      const response = await fetch(`${URL}/user/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+        credentials:'include'
       });
       if (!response.ok) {
         console.log('response not ok: ' + response.status);
         return;
       }
       const result = await response.json();
+      dispatch(setTokens({ accessToken: result.accessToken, refreshToken: result.refreshToken }));
+      router.push('/todos');  
+
       console.log(result);
     } catch (error) {
       console.log('error while registering: ' + error);

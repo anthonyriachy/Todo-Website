@@ -1,7 +1,11 @@
+"use client";
+import { useAppSelector } from '@/GlobalRedux/store';
 import Image from 'next/image'
 import React from 'react'
 
 function Header() {
+  // get the number of completed tasks from the database
+  const completed=useAppSelector(state=>state.Todos.todos).filter(todo=>todo.completed).length
   return (
     <header className="flex flex-col xs:flex-row  justify-between">
         {/* dont forget to change the number of completed to be fom db */}
@@ -9,7 +13,7 @@ function Header() {
             <Image src="hide.svg" alt="Eye" width={20} height={20}/>
             <span className="text-[#8C8E93]  ">Hide Completed</span>
         </div>
-        <span className="text-[#8C8E93] xs:self-end xs:order-1">{3} completed</span>
+        <span className="text-[#8C8E93] xs:self-end xs:order-1">{completed} completed</span>
         
     </header>
   )

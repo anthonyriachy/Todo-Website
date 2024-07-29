@@ -4,7 +4,7 @@ import { Fascinate } from "next/font/google";
 
 export interface Todo{
     _id:string,
-    text:string,
+    message:string,
     completed:boolean
 }
 interface TodoState{
@@ -19,7 +19,7 @@ const initialState:TodoState={
 
 }
 
-export const TodosSlice=createSlice({
+const TodosSlice=createSlice({
     name:"todo",
     initialState,
     reducers:{
@@ -34,15 +34,14 @@ export const TodosSlice=createSlice({
             state.todos.push(action.payload);
         },
         deleteTodo:(state,action:PayloadAction<string>)=>{
-            state.todos=state.todos.filter((todo)=>todo._id!==action.payload    )
+            state.todos=state.todos.filter((todo)=>todo._id!==action.payload)
         },
-        updateTodo:(state,action)=>{
-
+        updateTodo:(state,action:PayloadAction<string>)=>{
+            const todo=state.todos.findIndex(x=>x._id===action.payload);
+            if(todo!=-1){
+                state.todos[todo].completed=!state.todos[todo].completed;
+            }
         },
-        toggleTodo:(state,action)=>{
-
-        },
-
     }
 });
 

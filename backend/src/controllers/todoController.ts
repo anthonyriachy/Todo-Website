@@ -80,16 +80,16 @@ const updateTodo=async(req:customRequest,res:Response)=>{
     }
 }
 
-const GetTodos=async(req:Request,res:Response)=>{
+const GetTodos=async(req:customRequest,res:Response)=>{
 try {
-    const page= parseInt(req.params.page) || 1;
-    const limit= parseInt(req.params.limit) ||10;
-    
+    const page= parseInt(req.query.page as string) || 1;
+    const limit= parseInt(req.query.limit as string) ||10;
+    console.log("page and limit"+page+ " "+limit)    
     const skip = (page-1)*limit; // the limit is how many documents should be in one page, 
                                 // the number of pages-1 is how many pages we skip over 
 
 
-    const todos=await  Todo.find().skip(skip).limit(limit);
+    const todos=await  Todo.find({userId:req.userId}).skip(skip).limit(limit);
     if(todos.length==0){
         console.log("No todos found");
         return res.status(404).json({message:"No todos found"});

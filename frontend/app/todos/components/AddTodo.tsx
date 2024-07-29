@@ -1,4 +1,5 @@
-'use client';
+"use client";
+import fetchWithAuth from '@/fetchwrapper';
 import { addTodo } from '@/GlobalRedux/Features/Todos/TodoSlice';
 import { useAppDispatch } from '@/GlobalRedux/store';
  import React, { useState } from 'react'
@@ -9,14 +10,14 @@ function AddTodo() {
     const dispatch=useAppDispatch()
     const handleAdd=async()=>{
         try {
-          console.log('trying to add from frontend');
-            const response=await fetch('http://localhost:8080/todos',{
+          console.log('trying to add from frontend'+text);
+            const response=await fetchWithAuth(`${process.env.NEXT_PUBLIC_URL}/todo/create`,{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
                 },
                 body:JSON.stringify({
-                    text
+                    message:text
                 })
             })        
             if(!response.ok){
@@ -26,6 +27,7 @@ function AddTodo() {
               return 
             }
             const result=await response.json();
+            console.log("result "+result)
             dispatch(addTodo(result))
         } catch (error) {
             

@@ -3,6 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import SignUp from '../login/page';
+import { useDispatch } from 'react-redux';
+import { setTokens } from '@/GlobalRedux/Features/authSlice';
+import { useAppDispatch, useAppSelector } from '@/GlobalRedux/store';
+import { useRouter } from 'next/navigation';
 
 
 function Page():React.ReactElement {
@@ -12,18 +16,25 @@ function Page():React.ReactElement {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message,setMessage]=useState("");
+  const router=useRouter();
+
+  const dispatch = useAppDispatch();
+  const accessToken = useAppSelector(state => state.auth.accessToken);
+  const refreshToken = useAppSelector(state => state.auth.refreshToken);
+  console.log("oooooooooooooooooooooooooooooooo"+accessToken);
+  console.log(refreshToken);
+  
   const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault();
     if(password!=confirmPassword){
       setMessage("Passwords do not match");
       return;
-    }
+    } 
     if(!email || !password){
       setMessage("Email and Password required");
       return
     }
     try {
-      console.log("hello URL: "+URL)
       const response = await fetch(`${URL}/user/signup`, {
         method: 'POST',
         headers:{
@@ -32,7 +43,8 @@ function Page():React.ReactElement {
         body:JSON.stringify({
           email,
           password,
-        })
+        }),
+        credentials:'include'
       });
 
       if (!response.ok) {
@@ -40,7 +52,8 @@ function Page():React.ReactElement {
         return;
       }
       const result = await response.json();
-      console.log(result);
+      dispatch(setTokens({ accessToken: result.accessToken, refreshToken: result.refreshToken }));
+      router.push('/todos'); 
     } catch (error) {
       console.log('error while registering: ' + error);
     }

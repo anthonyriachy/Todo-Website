@@ -1,10 +1,10 @@
 import express from "express"
-import {signup,signin} from "../controllers/userController.ts"
+import {signup,login,refreshToken} from "../controllers/userController.ts"
 const route=express.Router();
 
-
+route.post('/refreshToken',refreshToken)
 route.post("/signup",signup);
-route.post("/signin",signin);
+route.post("/login",login);
 
 export default route;
 

@@ -1,12 +1,14 @@
 "use client"; //redux toolkit needs to be in a client,
             //server wont woork
 import {configureStore} from "@reduxjs/toolkit"
-import {TodosSlice} from './Features/Todos/TodoSlice'
+import TodosSlice from './Features/Todos/TodoSlice'
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import authSlice from "./Features/authSlice";
 
 export const store =configureStore({
     reducer:{
-        Todos:TodosSlice.reducer
+        Todos:TodosSlice,
+        auth: authSlice,
     }
 })
 
