@@ -89,7 +89,7 @@ try {
                                 // the number of pages-1 is how many pages we skip over 
 
 
-    const todos=await  Todo.find({userId:req.userId}).skip(skip).limit(limit);
+    const todos=await  Todo.find({userId:req.userId}).skip(skip).limit(limit).sort({date:-1});
     if(todos.length==0){
         console.log("No todos found");
         return res.status(404).json({message:"No todos found"});

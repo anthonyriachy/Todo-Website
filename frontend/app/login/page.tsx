@@ -1,10 +1,10 @@
 'use client'
 import { setTokens } from '@/GlobalRedux/Features/authSlice';
-import { useAppDispatch } from '@/GlobalRedux/store';
+import { useAppDispatch, useAppSelector } from '@/GlobalRedux/store';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
- import React, { useState } from 'react';
+ import React, { useEffect, useState } from 'react';
 
 
 const URL=process.env.NEXT_PUBLIC_URL
@@ -13,6 +13,18 @@ function Page():React.ReactElement {
   const [password, setPassword] = useState('');
   const dispatch=useAppDispatch();
   const router=useRouter();
+
+  const darkMode=useAppSelector(state=>state.Theme.darkMode); 
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
+
   const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
@@ -39,35 +51,33 @@ function Page():React.ReactElement {
   };
 
   return (
-    <main className=''>
-      <main className='flex flex-col items-center'>
-        <h1 className='opacity-50 font-400 text-[40px] mb-[75px] mt-[30px]'>Login</h1>
-        <form onSubmit={handleRegister} className='flex flex-col  w-[100%] md:w-[50%]'>
-          <input
-            type='email'
-            placeholder='Email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className='w-[100%] bg-[#2E3239] h-[80px] mb-[50px] px-[30px]'
-          />
-          <input
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className='w-[100%] bg-[#2E3239] h-[80px] px-[30px] mb-[50px]'
-          />
-          <p className='text-[#F4F6FA] text-[16px] opacity-50 my-[30px]'>
-            Don&apos;t have an account yet? 
-            <Link href='/register' className='underline'>SignUp</Link>
-          </p>
-          <button type='submit' className='bg-[#F4F6FA] w-[200px] sm:w-[300px] h-[50px] rounded-[9px] text-black mx-auto'>
-            Login
-          </button>
-        </form>
-      </main>
+      <main className='flex flex-col min-h-screen items-center bg-white dark:bg-[#23262C]'>
+      <h1 className='opacity-50 font-400 text-[40px] mb-[75px] mt-[30px] dark:text-[#FFFFFF]'>Login</h1>
+      <form onSubmit={handleRegister} className='flex flex-col  w-[100%] md:w-[50%]'>
+        <input
+          type='email'
+          placeholder='Email'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className='w-[100%] bg-[#DADADA] dark:bg-[#2E3239] h-[80px] mb-[50px] px-[30px]  dark:text-white'
+        />
+        <input
+          type='password'
+          placeholder='Password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className='w-[100%] bg-[#DADADA] dark:bg-[#2E3239] h-[80px] px-[30px]  dark:text-white'
+        />
+        <p className='text-black dark:text-[#F4F6FA] text-[16px] opacity-50 my-[30px]'>
+          Don&apos;t have an account yet? 
+          <Link href='/register' className='underline'> SignUp</Link>
+        </p>
+        <button type='submit' className='bg-[#F4F6FA] w-[200px] sm:w-[300px] h-[50px] rounded-[9px] text-black mx-auto'>
+          Login
+        </button>
+      </form>
     </main>
-  );
+   );
 }
 
 export default Page;

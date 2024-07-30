@@ -4,11 +4,13 @@ import {configureStore} from "@reduxjs/toolkit"
 import TodosSlice from './Features/Todos/TodoSlice'
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import authSlice from "./Features/authSlice";
+import ThemeSlice from "./Features/ThemeSlice";
 
 export const store =configureStore({
     reducer:{
         Todos:TodosSlice,
         auth: authSlice,
+        Theme:ThemeSlice
     }
 })
 

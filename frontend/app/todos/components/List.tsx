@@ -13,7 +13,7 @@ function List() {
     const loading=useAppSelector(state=>state.Todos.loading)
     const dispatch=useAppDispatch()
     const completed=useAppSelector(state=>state.Todos.todos).filter(todo=>todo.completed).length
-
+    const darkMode=useAppSelector(state=>state.Theme.darkMode)
     const [showCompleted, setShowCompleted] = useState(true);
 
 
@@ -99,10 +99,13 @@ function List() {
     const visibleTodos = showCompleted?todos:todos.filter(todo => !todo.completed);
 
   return (<>
-    <header className="flex flex-col xs:flex-row  justify-between">
-         <button onClick={toggleShowCompleted} className=" flex bg-[#2E3239] justify-between items-center px-[24px] py-[12px] gap-[12px] rounded-[9px] w-fit xs:order-2 mb-[20px]  xs:mb-0">
-            <Image src="hide.svg" alt="Eye" width={20} height={20}/>
-            <span className="text-[#8C8E93]  ">Hide Completed</span>
+    <header className="flex flex-col xs:flex-row  justify-between  ">
+         <button onClick={toggleShowCompleted} className=" flex bg-[#B4B4B4] dark:bg-[#2E3239] justify-between items-center px-[24px] py-[12px] gap-[12px] rounded-[9px] w-fit xs:order-2 mb-[20px]  xs:mb-0">
+            {darkMode?
+                <Image src="hide.svg" alt="Eye" width={20} height={20}/>
+                :
+                <Image src="hideLight.svg" alt="Eye" width={20} height={20}/>}
+            <span className="text-[#23262C] dark:text-[#8C8E93]  ">Hide Completed</span>
         </button>
         <span className="text-[#8C8E93] xs:self-end xs:order-1">{completed} completed</span>
         
@@ -121,7 +124,7 @@ function List() {
                             <Image src="checkboxEmpty.svg" alt="checkbox" width={24} height={24}/>
                         </button>
                     }
-                    <p className={`ml-2 ${item.completed?"line-through":""} text[#F4F6FA]`}>{item.message}</p>
+                    <p className={`ml-2 ${item.completed?"line-through":""} text:text-[black] dark:text-[#F4F6FA]`}>{item.message}</p>
 
                 </section>
                 <button className='hidden xs:block ' onClick={()=>handleDelete(item._id)} title="delete">
