@@ -74,7 +74,7 @@ function Page():React.ReactElement {
   return (
     
       <main className='bg-white dark:bg-[#23262C] flex flex-col items-center min-h-screen'>
-        <h1 className='opacity-50 font-400 text-[40px] mb-[75px] mt-[30px]'>Register</h1>
+        <h1 className='opacity-50 font-400 text-[40px] mb-[75px] mt-[30px] dark:text-[#FFFFFF]'>Register</h1>
         <form onSubmit={handleRegister} className='flex flex-col w-[100%] md:w-[50%]'>
           <input
             type='email'

@@ -95,7 +95,7 @@ function List() {
     const toggleShowCompleted = () => {
         setShowCompleted(prev => !prev);
     };
-
+    //fiter todos
     const visibleTodos = showCompleted?todos:todos.filter(todo => !todo.completed);
 
   return (<>
