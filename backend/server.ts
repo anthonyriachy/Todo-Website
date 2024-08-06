@@ -7,9 +7,12 @@ import authMiddleware from './config/authMiddleware.ts'
 import cookieParser from "cookie-parser"
 import connect from './config/db.ts'
 
-//connect to database.
-dotenv.config();
+ dotenv.config();
+//connect to database
 connect();
+//connect to redis
+//const redisClient=redis.createClient();// using default settings. in production we need the url of the production instance of redis
+
 
 const PORT=process.env.PORT;
 
@@ -22,6 +25,11 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
 app.use(cookieParser()); 
+
+
+
+
+
 app.use('/user',authRoute);
 
 app.use((req,res,next)=>{

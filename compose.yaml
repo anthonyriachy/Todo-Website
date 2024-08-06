@@ -1,0 +1,102 @@
+
+#version: "3.8"
+
+
+services:
+  frontend:
+    depends_on:   
+      - backend
+    
+    build: ./frontend
+
+    image: ariachy/todo-frontend
+    container_name: frontend_container
+    
+    ports:
+      - "3000:3000"
+    
+    # environment:
+    #   - NEXT_PUBLIC_URL=http://localhost:3080
+
+
+    env_file:
+      - ./frontend/.env.local
+ 
+    # volumes:  this don't work on windows because of wsl,...details
+    #   - ./frontend:/app
+    #   - /app/node_modules 
+
+    develop:
+    
+      watch:
+        - path: ./frontend/package.json
+          action: rebuild
+        - path: ./frontend/package-lock.json
+          action: rebuild
+        - path: ./frontend/next.config.json
+          action: rebuild
+        - path: ./frontend
+          target: /app
+          action: sync
+
+  backend: 
+  
+    depends_on: 
+      - db
+      - redis
+    
+
+    build: ./backend
+    image: ariachy/todo-backend
+    container_name: backend_container
+    restart: always #if it crach
+    ports: 
+      - "3080:3080"
+
+    
+    # environment: 
+    #   - PORT=${PORT}
+    #   - MONGODB_URI=${MONGODB_URI}
+    #   - ACCESS_SECRET=${ACCESS_SECRET}
+    #   - REFRESH_SECRET=${REFRESH_SECRET}
+
+    env_file: 
+      - ./backend/.env
+
+    volumes:
+      - ./backend:/app
+      - /app/node_modules 
+    #so i we changed the one the host computer the container doesnt get deletd
+  
+    # develop:
+    
+    #   watch:
+    
+    #     - path: ./backend/package.json
+    #       action: rebuild
+    #     - path: ./backend/package-lock.json
+    #       action: rebuild  
+    #     - path: ./backend
+    #       target: /app
+    #       action: sync
+
+
+  
+  db:
+  
+    image: mongo:latest
+  
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - Todo:/data/db
+
+  redis:
+    image: redis:alpine
+    container_name: redis_container
+    ports:
+      - "6379:6379"
+      
+volumes:
+  Todo:

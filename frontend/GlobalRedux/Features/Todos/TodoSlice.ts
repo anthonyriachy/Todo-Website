@@ -23,8 +23,8 @@ const TodosSlice=createSlice({
     name:"todo",
     initialState,
     reducers:{
-        setLoading:(state)=>{
-            state.loading=true
+        setLoading:(state,action:PayloadAction<boolean>)=>{
+            state.loading=action.payload
         },
         setTodos:(state,action:PayloadAction<Todo[]>)=>{
             state.todos=action.payload;

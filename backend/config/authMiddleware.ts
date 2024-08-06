@@ -9,16 +9,15 @@ import RefreshToken from "../src/models/refreshToken.ts"
 export default async (req:customRequest,res:Response,next:NextFunction)=>{
     console.log("hello from authorization")
     try {
-        const authHeader=req.headers["authorization"];
-        const token =authHeader?.split(" ")[1];
+        const token=  req.cookies.accessToken;
+        console.log("acces TOken: "+token)
+        // const token =authHeader?.split(" ")[1];
         
         //if the header doesn;t contain a token, or a authorization header
-        if(!token ){
+        if(!token){
             return res.status(403).json({message:"Unauthorized"});
         }
 
-        //later add the section where i add the token to a blacklist in my database, and check if the token is in there
-        //if yes then the user has logged out 
 
         // validating the token
         const secret=process.env.ACCESS_SECRET

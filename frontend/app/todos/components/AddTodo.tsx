@@ -2,7 +2,19 @@
 import fetchWithAuth from '@/fetchwrapper';
 import { addTodo } from '@/GlobalRedux/Features/Todos/TodoSlice';
 import { useAppDispatch } from '@/GlobalRedux/store';
- import React, { useState } from 'react'
+import React, { useState } from 'react'
+
+ interface AddTodoResponse { // add things like this to other request
+  code: number;
+  message: string;
+  data: {
+      userId:string;
+      message: string;
+      completed: boolean;
+      _id: string;
+      date:Date;
+  };
+}
 
 function AddTodo() {
     const [text,setText]=useState<string>("");
@@ -27,12 +39,14 @@ function AddTodo() {
               setText("")
               return 
             }
-            const result=await response.json();
-            console.log("result "+result)
-            dispatch(addTodo(result))
-            setText("")
-        } catch (error) {
+            const result:AddTodoResponse=await response.json();
+            console.log("added todo: "+result)
+            dispatch(addTodo(result.data))
             
+        } catch (error) {
+            console.log("error while adding the todo : "+ error);
+        } finally{
+          setText("")
         }
     }
 

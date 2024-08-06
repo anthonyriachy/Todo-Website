@@ -21,6 +21,7 @@ const signup = async (req: Request, res: Response): Promise<void> => {
     }
 
     const user = await User.findOne({ email });
+    
     if (user) {
       res.status(400).json({ message: "Email address already exists" });
       return;
@@ -36,11 +37,10 @@ const signup = async (req: Request, res: Response): Promise<void> => {
     await newRefreshToken.save();
 
     res.cookie('accessToken', accessToken, {
-      httpOnly: true,
+      httpOnly: false,
       secure: false, 
       sameSite: 'lax',
-      
-    });
+     });
 
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
@@ -48,7 +48,7 @@ const signup = async (req: Request, res: Response): Promise<void> => {
       sameSite: 'lax',
       
     });
-
+    console.log("ADDED USER "+ { user: savedUser, accessToken, refreshToken })
     res.status(200).json({ user: savedUser, accessToken, refreshToken });
   } catch (error) {
     res.status(500).json({ message: "Error creating user " + error });
@@ -66,6 +66,7 @@ const login=async(req:Request,res:Response)=>{
     }
 
     const user = await User.findOne({ email });
+    console.log("user from db: "+user)
     if (!user) {
       res.status(400).json({ message: "Incorrect email" });
       return;
@@ -87,10 +88,11 @@ const login=async(req:Request,res:Response)=>{
     console.log("log in changing refresh token",changeToken)
 
     res.cookie('accessToken', accessToken, {
-      httpOnly: true,
+      httpOnly: false,
       secure: false, 
       sameSite: 'lax',
-      
+      maxAge: 15 * 60 * 1000 
+
     });
 
     res.cookie('refreshToken', refreshToken, {

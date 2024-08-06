@@ -26,8 +26,6 @@ export const refreshToken = createAsyncThunk<
   async (_, { rejectWithValue }) => {
     try {
       
-      
-
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/user/refreshToken`, {
         method: 'POST',
         headers: {

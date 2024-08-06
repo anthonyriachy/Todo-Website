@@ -6,6 +6,6 @@ const generateAccessToken=(userId:Types.ObjectId)=>{
       if(!secret){
         throw new Error("token secret cannot be found");
       }
-      return jwt.sign({userId},secret,{subject:"access token",expiresIn:"30m"});
+      return jwt.sign({userId},secret,{subject:"access token",expiresIn:"2h"});
 }
 export {generateAccessToken}

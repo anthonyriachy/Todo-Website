@@ -10,7 +10,7 @@ import Image from "next/image";
 
 function Page():JSX.Element {
    const { accessToken } = useAppSelector(state => state.auth);
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!accessToken) {
       redirect("/register")
      }
