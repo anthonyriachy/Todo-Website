@@ -42,7 +42,7 @@ function Page():React.ReactElement {
       }
       const result = await response.json();
       dispatch(setTokens({ accessToken: result.accessToken, refreshToken: result.refreshToken }));
-      router.push('/todos');  
+      router.push('/');  
 
       console.log(result);
     } catch (error) {

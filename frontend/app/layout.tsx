@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
 import {Providers} from '../GlobalRedux/provider';
-import LayoutHeader from "./todos/components/LayoutHeader";
+import LayoutHeader from "./components/LayoutHeader";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = { //this is from next

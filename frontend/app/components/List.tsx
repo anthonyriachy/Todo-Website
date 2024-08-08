@@ -21,6 +21,7 @@ function List() {
     const loading = useAppSelector((state) => state.Todos.loading);
     const dispatch = useAppDispatch();
 
+    //number of completed
     const completed = useAppSelector((state) => state.Todos.todos).filter(
         (todo) => todo.completed
     ).length;
@@ -47,13 +48,13 @@ function List() {
 
                 const data = await response.json();
                 console.log("fetched data ", data.data.todos);
-                if (data.data.todos.length) {
+                if (data.data.todos.length>0) {
                     dispatch(setTodos(data.data.todos));
                 } else {
                     dispatch(setTodos([]));
                 }
             } catch (error) {
-                setMessage("Error fetching todos:" + error);
+                setMessage("Error fetching todosss:" + error);
                 console.error("Error fetching todos:", error);
             } finally {
                 dispatch(setLoading(false));

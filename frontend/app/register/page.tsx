@@ -65,7 +65,7 @@ function Page():React.ReactElement {
       }
       const result = await response.json();
       dispatch(setTokens({ accessToken: result.accessToken, refreshToken: result.refreshToken }));
-      router.push('/todos'); 
+      router.push('/'); 
     } catch (error) {
       console.log('error while registering: ' + error);
     }

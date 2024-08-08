@@ -32,7 +32,6 @@ const fetchWithAuth = async (url: string, options: RequestInit = {}) => {
       return retryResponse;
     } else {
       store.dispatch(clearTokens());
-      // Handle refresh token failure ( redirect to login)
       return response;
     }
   }
