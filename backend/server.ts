@@ -29,6 +29,10 @@ app.use(cookieParser());
 
 
 
+app.get("/",(req,res)=>{
+    console.log("test route")
+    res.send("Hello from test route")
+})
 
 app.use('/user',authRoute);
 
