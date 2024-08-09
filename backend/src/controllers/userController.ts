@@ -1,6 +1,5 @@
-import { Error, Types } from "mongoose";
-import User from "../models/user.ts";
-import RefreshToken from "../models/refreshToken.ts";
+import User from "../models/user";
+import RefreshToken from "../models/refreshToken";
 import { Request, Response } from "express";
 import jwt, { JsonWebTokenError } from "jsonwebtoken"
 import dotenv from "dotenv"
@@ -8,8 +7,8 @@ dotenv.config();
 
 
 
-import { generateAccessToken } from "../util.ts";
-import { CustomJwtPayload, customRequest } from "../../Types.ts";
+import { generateAccessToken } from "../util";
+import { CustomJwtPayload, customRequest } from "../../Types";
 
 const signup = async (req: Request, res: Response): Promise<void> => {
   try {

@@ -1,5 +1,5 @@
 import express from "express"
-import {signup,login,refreshToken} from "../controllers/userController.ts"
+import {signup,login,refreshToken} from "../controllers/userController"
 const route=express.Router();
 
 route.post('/refreshToken',refreshToken)

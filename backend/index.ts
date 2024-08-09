@@ -2,10 +2,10 @@ import cors from "cors"
 import express from "express"
 import dotenv from "dotenv"
 import authRoute from "./src/routes/userRoute"
-import todoRoute from "./src/routes/todoRoute.ts"
-import authMiddleware from './config/authMiddleware.ts'
+import todoRoute from "./src/routes/todoRoute"
+import authMiddleware from './config/authMiddleware'
 import cookieParser from "cookie-parser"
-import connect from './config/db.ts'
+import connect from './config/db'
 
  dotenv.config();
 //connect to database

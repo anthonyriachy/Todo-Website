@@ -2,9 +2,7 @@ import { NextFunction, Request, Response } from "express"
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
 dotenv.config();
-import { customRequest,CustomJwtPayload } from "../Types.ts";
-import { generateAccessToken } from "../src/util.ts";
-import RefreshToken from "../src/models/refreshToken.ts"
+import { customRequest,CustomJwtPayload } from "../Types";
 
 export default async (req:customRequest,res:Response,next:NextFunction)=>{
     console.log("hello from authorization")
