@@ -8,6 +8,7 @@ COPY package*.json ./
 #RUN chown -R app:app .#extra for security
 #USER app#extra for security
 RUN npm install 
+
 COPY . .
 EXPOSE 3080
 CMD ["npm","start"]
