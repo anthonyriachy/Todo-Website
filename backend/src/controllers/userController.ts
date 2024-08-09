@@ -37,14 +37,14 @@ const signup = async (req: Request, res: Response): Promise<void> => {
 
     res.cookie('accessToken', accessToken, {
       httpOnly: false,
-      secure: false, 
-      sameSite: 'lax',
+      secure: true, 
+      sameSite: 'none',
      });
 
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      secure: false, 
-      sameSite: 'lax',
+      secure: true, 
+      sameSite: 'none',
       
     });
     console.log("ADDED USER "+ { user: savedUser, accessToken, refreshToken })
@@ -88,16 +88,16 @@ const login=async(req:Request,res:Response)=>{
 
     res.cookie('accessToken', accessToken, {
       httpOnly: false,
-      secure: false, 
-      sameSite: 'lax',
+      secure: true, 
+      sameSite: 'none',
       maxAge: 15 * 60 * 1000 
 
     });
 
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      secure: false, 
-      sameSite: 'lax',
+      secure: true, 
+      sameSite: 'none',
       
     });
 
