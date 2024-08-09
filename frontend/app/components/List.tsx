@@ -150,7 +150,7 @@ function List() {
             </header>
             {message && <h1>${message}</h1>}
             {visibleTodos.length ? (
-                <ul className="mt-[30px] mb-[60px]">
+                <ul className="mt-[30px] mb-[44px]">
                     {visibleTodos.map((item, index) => (
                         <li key={index} className="py-2 flex justify-between mb-[20px]">
                             <section className="flex gap-[12px] items-center">

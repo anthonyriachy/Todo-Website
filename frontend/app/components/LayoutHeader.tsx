@@ -9,7 +9,7 @@ function LayoutHeader() {
     const darkMode=useAppSelector(state=>state.Theme.darkMode);
     const dispatch=useAppDispatch();
   return (
-    <section  className='bg-white dark:bg-[#23262C] px-[20px] pt-[32px] md:px-[80px] md:pt-[67px]'>
+    <section  className='bg-white dark:bg-[#23262C] px-[20px] pt-[69px] md:px-[80px] md:pt-[67px]'>
         <header className='flex  justify-between mb-[20px]'>
             <section>
                 <h1 className=' text-[24px] md:text-[26px] font-bold text-[#23262C]  dark:text-[white] '>TO DO APP</h1>    

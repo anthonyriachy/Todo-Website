@@ -26,7 +26,7 @@ function Page():JSX.Element {
   }, [darkMode]);
 
   return (
-      <main className={"bg-white dark:bg-[#23262C] px-[20px] py-[32px] md:px-[80px] md:py-[40px] min-h-screen"}>
+      <main className={"bg-white dark:bg-[#23262C] px-[30px] py-[32px] md:px-[80px] md:py-[40px] min-h-screen"}>
        <List />
       <AddTodo />
     </main>

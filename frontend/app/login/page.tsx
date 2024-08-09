@@ -51,31 +51,31 @@ function Page():React.ReactElement {
   };
 
   return (
-      <main className='flex flex-col min-h-screen items-center bg-white dark:bg-[#23262C]'>
-      <h1 className='opacity-50 font-400 text-[40px] mb-[75px] mt-[30px] dark:text-[#FFFFFF]'>Login</h1>
-      <form onSubmit={handleRegister} className='flex flex-col  w-[100%] md:w-[50%]'>
-        <input
-          type='email'
-          placeholder='Email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className='w-[100%] bg-[#DADADA] dark:bg-[#2E3239] h-[80px] mb-[50px] px-[30px]  dark:text-white'
-        />
-        <input
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className='w-[100%] bg-[#DADADA] dark:bg-[#2E3239] h-[80px] px-[30px]  dark:text-white'
-        />
-        <p className='text-black dark:text-[#F4F6FA] text-[16px] opacity-50 my-[30px]'>
-          Don&apos;t have an account yet? 
-          <Link href='/register' className='underline'> SignUp</Link>
-        </p>
-        <button type='submit' className='bg-[#F4F6FA] w-[200px] sm:w-[300px] h-[50px] rounded-[9px] text-black mx-auto'>
-          Login
-        </button>
-      </form>
+      <main className='flex flex-col min-h-screen items-center bg-white dark:bg-[#23262C] px-[20px] md:px-[20px]  '>
+        <h1 className='opacity-50 font-400 text-[40px] mb-[75px] mt-[30px] dark:text-[#FFFFFF]'>Login</h1>
+        <form onSubmit={handleRegister} className='flex flex-col  w-[100%] md:w-[50%]'>
+          <input
+            type='email'
+            placeholder='Email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className='w-[100%] bg-[#DADADA] dark:bg-[#2E3239]  h-[60px] md:h-[80px]  mb-[25px] md:mb-[50px] px-[30px]  dark:text-white rounded-[10px]'
+          />
+          <input
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className='w-[100%] bg-[#DADADA] dark:bg-[#2E3239] h-[60px] md:h-[80px] px-[30px]  dark:text-white rounded-[10px]'
+          />
+          <p className='text-black dark:text-[#F4F6FA] text-[16px] opacity-50 my-[30px]'>
+            Don&apos;t have an account yet? 
+            <Link href='/register' className='underline'> SignUp</Link>
+          </p>
+          <button type='submit' className='bg-[#F4F6FA] w-[200px] sm:w-[300px] h-[50px] rounded-[9px] text-black mx-auto'>
+            Login
+          </button>
+        </form>
     </main>
    );
 }

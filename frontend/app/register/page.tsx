@@ -73,7 +73,7 @@ function Page():React.ReactElement {
 
   return (
     
-      <main className='bg-white dark:bg-[#23262C] flex flex-col items-center min-h-screen'>
+      <main className='flex flex-col min-h-screen items-center bg-white dark:bg-[#23262C] px-[20px] md:px-[20px]'>
         <h1 className='opacity-50 font-400 text-[40px] mb-[75px] mt-[30px] dark:text-[#FFFFFF]'>Register</h1>
         <form onSubmit={handleRegister} className='flex flex-col w-[100%] md:w-[50%]'>
           <input
@@ -81,21 +81,21 @@ function Page():React.ReactElement {
             placeholder='Email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className=' w-[100%] bg-[#DADADA] dark:bg-[#2E3239] h-[80px] mb-[50px] px-[30px]  dark:text-white'
+            className=' w-[100%] bg-[#DADADA] dark:bg-[#2E3239]  h-[60px] md:h-[80px]  mb-[25px] md:mb-[50px] px-[30px]  dark:text-white rounded-[10px]'
           />
           <input
             type='password'
             placeholder='Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className='w-[100%] bg-[#DADADA] dark:bg-[#2E3239] h-[80px] px-[30px] mb-[50px]  dark:text-white'
+            className='w-[100%] bg-[#DADADA] dark:bg-[#2E3239]  h-[60px] md:h-[80px] px-[30px] mb-[25px] md:mb-[50px]  dark:text-white rounded-[10px]'
           />
           <input
             type='password'
             placeholder='Confirm Password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className='w-[100%] bg-[#DADADA] dark:bg-[#2E3239] h-[80px] px-[30px]  dark:text-white'
+            className='w-[100%] bg-[#DADADA] dark:bg-[#2E3239]  h-[60px] md:h-[80px] px-[30px]  dark:text-white rounded-[10px]'
           />
           <p className='text-black dark:text-[#F4F6FA] text-[16px] opacity-50 my-[30px]'>
             Already have an account? 

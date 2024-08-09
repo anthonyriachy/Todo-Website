@@ -3,6 +3,7 @@ import fetchWithAuth from '@/fetchwrapper';
 import { addTodo } from '@/GlobalRedux/Features/Todos/TodoSlice';
 import { useAppDispatch } from '@/GlobalRedux/store';
 import React, { useState } from 'react'
+import { FiPlusCircle } from "react-icons/fi";
 
  interface AddTodoResponse { // add things like this to other request
   code: number;
@@ -54,6 +55,8 @@ function AddTodo() {
     <footer className='flex justify-between py-4 px-[30px] rounded-[10px] bg-[#DADADA] dark:bg-[#2E3239]'>
         <input type="text" placeholder='New Note' value={text} onChange={(e)=>setText(e.target.value)} className=' bg-[#DADADA] dark:bg-[#2E3239] dark:text-[#DADADA] text-black flex-1'/>
         <button className='hidden xs:inline bg-[#F4F6FA] py-3 px-6 rounded-[9px] text-[#2E3239]' onClick={handleAdd}>Add New Note</button>
+        <button className='xs:hidden py-1 px-3 bg-[#F4F6FA] rounded-full text-[#2E3239] text-3xl flex items-center justify-center' onClick={handleAdd}><p>+</p></button>
+
     </footer>
   )
 }
