@@ -3,7 +3,7 @@ import fetchWithAuth from '@/fetchwrapper';
 import { addTodo } from '@/GlobalRedux/Features/Todos/TodoSlice';
 import { useAppDispatch } from '@/GlobalRedux/store';
 import React, { useState } from 'react'
-import { FiPlusCircle } from "react-icons/fi";
+
 
  interface AddTodoResponse { // add things like this to other request
   code: number;
