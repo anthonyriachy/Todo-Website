@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    // "outDir": "./dist",
-    // "rootDir": "./src",
-    // "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "moduleResolution": "node",
      /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Projects */
@@ -108,6 +108,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  // "include": ["src/**/*", "src/index.ts"],
-  // "exclude": ["node_modules"]
+  "include": ["src/**/*", "src/index.ts"],
+  "exclude": ["node_modules"]
 }

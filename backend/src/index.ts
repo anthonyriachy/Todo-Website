@@ -10,32 +10,43 @@ import connect from '../config/db'
  dotenv.config();
 //connect to database
 connect();
-//connect to redis
-//const redisClient=redis.createClient();// using default settings. in production we need the url of the production instance of redis
 
 
 const PORT=process.env.PORT;
+const isDevelopment = process.env.NODE_ENV === 'development';
+const isProduction = process.env.NODE_ENV === 'production';
 
 const app=express();
+if(isProduction){
+    console.log("running in PRODUCTION")
+    app.use(cors({
+        origin:'https://todo-website-frontend.vercel.app', 
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        credentials: true, 
+        optionsSuccessStatus: 200,
+    }));
+}else if(isDevelopment){
+    console.log("running in DEVELOPMENT")
+    app.use(cors({
+        origin:'http://localhost:3000', 
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        credentials: true, 
+        optionsSuccessStatus: 200,
+    }));
+}else{
+    console.log("unkown enviroment");
+}
 
-app.use(cors({
-    origin:'https://todo-website-frontend.vercel.app', 
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true, 
-    optionsSuccessStatus: 200,
-}));
+
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
 app.use(cookieParser()); 
 
-app.options('*', cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-}));
 
 
 app.get("/",(req,res)=>{
@@ -53,6 +64,6 @@ app.use((req,res,next)=>{
     authMiddleware(req,res,next);
 })
 app.use('/todo',todoRoute)
-app.listen(PORT||3000,()=>{
+app.listen(PORT||3080,()=>{
     console.log("app listing on port ",PORT)
 })

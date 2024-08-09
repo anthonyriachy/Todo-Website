@@ -12,5 +12,6 @@ export const client = createClient({
 client.on('error',err=>console.error('error in redis : '+err));
 
 if(!client.isOpen){ // so we dont connect multiple time
+    console.log("redis connected")
     client.connect();
 }
