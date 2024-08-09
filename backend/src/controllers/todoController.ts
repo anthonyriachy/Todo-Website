@@ -32,7 +32,11 @@ const GetTodos=async(req:customRequest,res:Response)=>{
         const todos=await Todo.find({userId:req.userId}).skip(skip).limit(limit).sort({date:-1});
         if(todos?.length==0){
             console.log("No todos found");
-            return res.status(200).json({message:"No todos found"});
+            return res.status(200).json({code:200,
+                message:"No todos found",
+                data:{
+                    todos:[]
+                }});
         }
         const totalPages=Math.ceil(await Todo.countDocuments()/limit); //retrun the biggest int closest to the answer, 2.5 -> 3
         await client.set(`todos:${req.userId}`,JSON.stringify(todos));

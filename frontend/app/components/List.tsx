@@ -40,18 +40,22 @@ function List() {
                         "Content-Type": "application/json",
                     },
                 });
-                 if (!response.ok) {
+                if (!response.ok) {
                     console.log("error while fetching todos" + response.status);
                     setMessage("error while fetching todos" + response.status);
                     return;
                 }
 
+                console.log("fetched data ");
                 const data = await response.json();
-                console.log("fetched data ", data.data.todos);
-                if (data.data.todos.length>0) {
+                console.log("fetched data after data");
+
+                if (data.data.todos.length > 0) {
                     dispatch(setTodos(data.data.todos));
+                    setMessage("");
                 } else {
                     dispatch(setTodos([]));
+                    setMessage("no todos found");
                 }
             } catch (error) {
                 setMessage("Error fetching todosss:" + error);
@@ -122,7 +126,7 @@ function List() {
     };
 
     //fiter todos
-    const visibleTodos = showCompleted? todos: todos.filter((todo) => !todo.completed);
+    const visibleTodos = showCompleted ? todos : todos.filter((todo) => !todo.completed);
 
     return (
         <>
