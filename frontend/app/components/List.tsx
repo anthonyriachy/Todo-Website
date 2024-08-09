@@ -55,7 +55,7 @@ function List() {
                     setMessage("");
                 } else {
                     dispatch(setTodos([]));
-                    setMessage("no todos found");
+                    setMessage("");
                 }
             } catch (error) {
                 setMessage("Error fetching todosss:" + error);
